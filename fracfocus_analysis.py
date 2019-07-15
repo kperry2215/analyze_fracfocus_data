@@ -58,7 +58,7 @@ def clean_vendor_data(df, column, column_search_string, column_string_rename):
     df.loc[df[column].str.contains(column_search_string), column] = column_string_rename
     return df
 
-def generate_scatter_plot(df, x_variable, y_variables, plot_title):
+def generate_plot(df, x_variable, y_variables, plot_title):
     """
     This function is used to map x- and y-variables against each other
     Arguments:
@@ -68,7 +68,7 @@ def generate_scatter_plot(df, x_variable, y_variables, plot_title):
         y_variables: string (single), or list of strings (multiple). Name(s) 
         of the column(s) that we want to set as the y-variable in the plot
     Outputs:
-        Scatter plot in console.
+        Plot in console.
     """
     #Plot results
     df.plot(x=x_variable, y=y_variables, title=plot_title)
@@ -127,11 +127,11 @@ def main():
                                              'TotalBaseWaterVolume', 
                                              'Latitude', 'Longitude']].drop_duplicates()
     #Plot the 'TotalBaseWaterVolume' variable over time
-    generate_scatter_plot(basic_frac_characteristics, x_variable='JobStartDate', 
+    generate_plot(basic_frac_characteristics, x_variable='JobStartDate', 
               y_variables=['TotalBaseWaterVolume'], 
               plot_title='Total Base Water Volume for Fracs over Time')
     #Plot the 'TotalBaseNonWaterVolume' variable over time
-    generate_scatter_plot(basic_frac_characteristics, x_variable='JobStartDate', 
+    generate_plot(basic_frac_characteristics, x_variable='JobStartDate', 
               y_variables=['TotalBaseNonWaterVolume'], 
               plot_title='Total Base Non-Water Volume for Fracs over Time')
     #Plot the distribution of TotalBaseNoneWaterVolume using a box-and-whisker plot, with outliers removed
